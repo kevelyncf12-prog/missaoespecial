@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Um convite especial</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: #59624a;
+    color: #f5f0e7;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: min(92%, 560px);
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+  }
+
+  .screen {
+    display: none;
+    width: 100%;
+    text-align: center;
+    animation: fade .55s ease;
+  }
+
+  .screen.active {
+    display: block;
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .ornament {
+    color: #d6bd8a;
+    font-size: 25px;
+    letter-spacing: 10px;
+    margin-bottom: 28px;
+  }
+
+  h1,
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: #fffaf1;
+  }
+
+  h1 {
+    font-size: clamp(48px, 11vw, 72px);
+    line-height: .95;
+    margin: 0 0 22px;
+  }
+
+  h2 {
+    font-size: clamp(34px, 9vw, 52px);
+    line-height: 1;
+    margin: 0 0 22px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 10px auto;
+    max-width: 460px;
+  }
+
+  .date {
+    margin: 25px 0;
+    color: #d6bd8a;
+    font-size: 13px;
+    letter-spacing: 4px;
+  }
+
+  button {
+    border: 1px solid #d6bd8a;
+    background: transparent;
+    color: #f5f0e7;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: .25s;
+    margin-top: 18px;
+  }
+
+  button:hover {
+    background: #d6bd8a;
+    color: #4d5540;
+    transform: translateY(-2px);
+  }
+
+  .question {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    line-height: 1.2;
+    margin: 20px auto 28px;
+    max-width: 480px;
+  }
+
+  .options {
+    display: grid;
+    gap: 11px;
+    max-width: 430px;
+    margin: auto;
+  }
+
+  .option {
+    width: 100%;
+    margin: 0;
+    background: rgba(255,255,255,.10);
+    border-color: rgba(255,250,241,.35);
+    text-transform: none;
+    letter-spacing: .3px;
+    font-size: 13px;
+    padding: 14px 18px;
+  }
+
+  .option:hover {
+    background: rgba(255,255,255,.20);
+    color: #fffaf1;
+  }
+
+  .small {
+    font-size: 12px;
+    color: #ded6c8;
+    margin-top: 25px;
+  }
+
+  .reveal {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    line-height: 1.45;
+    margin: 25px auto;
+  }
+
+  .choice {
+    display: grid;
+    gap: 13px;
+    max-width: 390px;
+    margin: 30px auto 0;
+  }
+
+  .yes {
+    background: #d6bd8a;
+    color: #4d5540;
+  }
+
+  .no {
+    border-color: rgba(255,250,241,.30);
+  }
+
+  .secret {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #d6bd8a;
+    margin-bottom: 20px;
+  }
+
+  .final-heart {
+    font-size: 42px;
+    margin: 20px;
+    color: #d6bd8a;
+  }
+
+  .counter {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #d8d1c5;
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- TELA 1 -->
+  <section class="screen active" id="s0">
+
+    <div class="ornament">✦</div>
+
+    <div class="secret">
+      CONVITE ESPECIAL
+    </div>
+
+    <h1>
+      Existe algo que queremos<br>
+      perguntar a vocês...
+    </h1>
+
+    <p>
+      Preparamos uma pequena experiência.<br>
+      Respondam às perguntas e, aos poucos,
+      descubram o motivo deste convite.
+    </p>
+
+    <button onclick="go(1)">
+      COMEÇAR
+    </button>
+
+  </section>
+
+
+  <!-- PERGUNTA 1 -->
+  <section class="screen" id="s1">
+
+    <div class="counter">
+      01 / 03
+    </div>
+
+    <div class="ornament">
+      ♡
+    </div>
+
+    <div class="question">
+      Quem vocês acham que vai se emocionar primeiro no grande dia?
+    </div>
+
+    <div class="options">
+
+      <button class="option" onclick="go(2)">
+        Ele
+      </button>
+
+      <button class="option" onclick="go(2)">
+        Ela
+      </button>
+
+      <button class="option" onclick="go(2)">
+        Os dois
+      </button>
+
+      <button class="option" onclick="go(2)">
+        Ninguém vai chorar 😂
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- PERGUNTA 2 -->
+  <section class="screen" id="s2">
+
+    <div class="counter">
+      02 / 03
+    </div>
+
+    <div class="ornament">
+      ♡
+    </div>
+
+    <div class="question">
+      O que vocês acham que não pode faltar em um dia realmente inesquecível?
+    </div>
+
+    <div class="options">
+
+      <button class="option" onclick="go(3)">
+        Pessoas especiais
+      </button>
+
+      <button class="option" onclick="go(3)">
+        Amor e alegria
+      </button>
+
+      <button class="option" onclick="go(3)">
+        Boas histórias
+      </button>
+
+      <button class="option" onclick="go(3)">
+        Tudo isso
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- PERGUNTA 3 -->
+  <section class="screen" id="s3">
+
+    <div class="counter">
+      03 / 03
+    </div>
+
+    <div class="ornament">
+      ♡
+    </div>
+
+    <div class="question">
+      Vocês aceitariam uma missão que envolve amor, amizade,
+      celebração e um dia que ficará para sempre na memória?
+    </div>
+
+    <div class="options">
+
+      <button class="option" onclick="go(4)">
+        Aceitaria
+      </button>
+
+      <button class="option" onclick="go(4)">
+        Pode contar comigo
+      </button>
+
+      <button class="option" onclick="go(4)">
+        Isso está muito suspeito? 👀
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- SUSPENSE -->
+  <section class="screen" id="s4">
+
+    <div class="ornament">
+      ✦
+    </div>
+
+    <h2>
+      Muito bem...
+    </h2>
+
+    <p>
+      Vocês chegaram até aqui...
+    </p>
+
+    <p>
+      Mas talvez ainda não tenham percebido
+      que essas perguntas não eram por acaso.
+    </p>
+
+    <p class="reveal">
+      Existe um motivo para termos escolhido vocês.
+    </p>
+
+    <button onclick="go(5)">
+      DESCOBRIR
+    </button>
+
+  </section>
+
+
+  <!-- REVELAÇÃO -->
+  <section class="screen" id="s5">
+
+    <div class="secret">
+      AGORA VAMOS AO PONTO
+    </div>
+
+    <div class="ornament">
+      ♡
+    </div>
+
+    <p>
+      Existe uma data muito especial se aproximando:
+    </p>
+
+    <div class="date">
+      11 · 09 · 2027
+    </div>
+
+    <p class="reveal">
+      E, para viver esse dia da maneira mais especial possível,
+      estamos escolhendo algumas pessoas que queremos ter ao nosso lado.
+    </p>
+
+    <h2>
+      E vocês são algumas delas —
+      pessoas que fazem parte da nossa história
+      e que nós amamos! ❤️
+    </h2>
+
+    <button onclick="go(6)">
+      CONTINUAR
+    </button>
+
+  </section>
+
+
+  <!-- PERGUNTA DOS PADRINHOS -->
+  <section class="screen" id="s6">
+
+    <div class="ornament">
+      ✦
+    </div>
+
+    <p class="reveal">
+      Depois de tudo isso,
+      chegou o momento da pergunta que realmente importa...
+    </p>
+
+    <h2>
+      Vocês aceitam estar ao nosso lado
+      como nossos padrinhos?
+    </h2>
+
+    <div class="choice">
+
+      <button class="yes" onclick="go(7)">
+        ❤️ SIM, ACEITAMOS!
+      </button>
+
+      <button class="no" onclick="go(8)">
+        NÃO 😢
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- SIM -->
+  <section class="screen" id="s7">
+
+    <div class="final-heart">
+      ♡
+    </div>
+
+    <div class="secret">
+      MISSÃO ACEITA!
+    </div>
+
+    <h2>
+      Sabíamos que poderíamos contar com vocês. ❤️
+    </h2>
+
+    <p class="reveal">
+      Vocês acabam de aceitar um lugar muito especial
+      em nossa história e em um dos dias mais importantes
+      das nossas vidas.
+    </p>
+
+    <p>
+      Mas calma...
+    </p>
+
+    <p>
+      Este ainda não é o convite oficial.
+    </p>
+
+    <p>
+      O convite oficial será feito em breve,
+      com todo o carinho e cuidado que esse momento merece.
+    </p>
+
+    <div class="date">
+      11 · 09 · 2027
+    </div>
+
+    <p>
+      Para confirmar oficialmente essa missão,
+      enviem para nós uma
+      <strong>
+        foto de vocês dois sorrindo e/ou dando joinha
+      </strong>.
+      ❤️
+    </p>
+
+    <button onclick="notifyYes()">
+      CONFIRMAR PELO WHATSAPP
+    </button>
+
+    <p class="small">
+      Até lá, guardem esse pequeno segredo. 🤫
+    </p>
+
+  </section>
+
+
+  <!-- PRIMEIRA TELA DO NÃO -->
+  <section class="screen" id="s8">
+
+    <div class="ornament">
+      ♡
+    </div>
+
+    <div class="secret">
+      UMA ÚLTIMA PERGUNTA...
+    </div>
+
+    <h2>
+      🥺 Tem certeza?
+    </h2>
+
+    <p class="reveal">
+      Confessamos que essa resposta deixou
+      nossos corações um pouquinho tristes...
+    </p>
+
+    <p>
+      Nós escolhemos vocês porque são pessoas
+      muito especiais para nós e que fazem parte
+      da nossa história.
+    </p>
+
+    <p>
+      Mas, acima de tudo, queremos que vocês
+      se sintam à vontade e respeitamos
+      a decisão de vocês.
+    </p>
+
+    <p>
+      <strong>
+        Se realmente não aceitarem essa missão,
+        pedimos apenas que nos avisem pelo WhatsApp. ❤️
+      </strong>
+    </p>
+
+    <div class="choice">
+
+      <button class="yes" onclick="go(6)">
+        VOLTAR
+      </button>
+
+      <button class="no" onclick="go(9)">
+        NÃO ACEITAMOS
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- NÃO DEFINITIVO -->
+  <section class="screen" id="s9">
+
+    <div class="ornament">
+      ♡
+    </div>
+
+    <div class="secret">
+      TUDO BEM...
+    </div>
+
+    <h2>
+      Ficamos tristes. 🥺
+    </h2>
+
+    <p class="reveal">
+      Ficamos tristes por não ter vocês ao nosso lado
+      nessa missão, mas entendemos e respeitamos
+      a decisão.
+    </p>
+
+    <p>
+      Obrigado por fazerem parte da nossa história
+      e por terem participado dessa pequena brincadeira.
+    </p>
+
+    <p>
+      <strong>
+        Agora só falta nos avisar pelo WhatsApp. ❤️
+      </strong>
+    </p>
+
+    <div class="choice">
+
+      <button class="yes" onclick="notifyNo()">
+        AVISAR PELO WHATSAPP
+      </button>
+
+      <button class="no" onclick="go(6)">
+        VOLTAR
+      </button>
+
+    </div>
+
+  </section>
+
+</div>
+
+
+<script>
+
+function go(n) {
+
+  document
+    .querySelectorAll('.screen')
+    .forEach(screen => {
+      screen.classList.remove('active');
+    });
+
+  document
+    .getElementById('s' + n)
+    .classList.add('active');
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+
+}
+
+
+function notifyYes() {
+
+  const message = encodeURIComponent(
+    "MISSÃO ACEITA! ❤️ Vamos enviar nossa foto sorrindo e/ou dando joinha para confirmar!"
+  );
+
+  window.open(
+    "https://wa.me/5522999913310?text=" + message,
+    "_blank"
+  );
+
+}
+
+
+function notifyNo() {
+
+  const message = encodeURIComponent(
+    "Nós vimos o pré-convite. 🥺 Com carinho, queremos avisar que não aceitaremos a missão de ser padrinhos. Obrigado por todo o carinho e por fazerem parte da nossa história. ❤️"
+  );
+
+  window.open(
+    "https://wa.me/5522999913310?text=" + message,
+    "_blank"
+  );
+
+}
+
+</script>
+
+</body>
+</html>
